@@ -1,0 +1,66 @@
+.register-container {
+  max-width: 500px;        /* Wider than before */
+  margin: 60px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.register-container h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.register-container input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s;
+}
+
+.register-container input:focus {
+  border-color: #007bff;
+}
+
+.register-container button {
+  width: 100%;
+  padding: 14px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.register-container button:hover {
+  background-color: #0056b3;
+  transform: scale(1.02);
+}
+
+.register-container p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+.register-container a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.register-container a:hover {
+  text-decoration: underline;
+}
+h1 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5667px; }

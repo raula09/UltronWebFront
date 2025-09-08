@@ -1,0 +1,97 @@
+.filters-container {
+  width: 20%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+
+.filter-btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.category-open-btn, .brand-open-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.category-open-btn button, .brand-open-btn button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #f0f0f0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.category-open-btn button.active, .brand-open-btn button.active {
+  background-color: #ff8d55;
+  color: white;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+}
+
+
+.category-menu, .brand-menu {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+}
+
+.category, .brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.category:hover, .brand:hover {
+  background-color: #f9f9f9;
+}
+
+.category img, .brand img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.category p {
+  margin-top: 0.5rem;
+}
+
+
+@media (max-width: 992px) {
+  .filter-btn-container {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .category-menu, .brand-menu {
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+@media (max-width: 480px) {
+  .category-menu, .brand-menu {
+      grid-template-columns: 1fr;
+  }
+}
+h1 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5667px; }

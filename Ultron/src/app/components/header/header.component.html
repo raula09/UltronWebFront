@@ -1,0 +1,44 @@
+<header class="header" *ngIf="!loading">
+  <section class="sec1">
+    <img src="/logo.svg" class="logo" alt="Logo" routerLink="/" (click)="debugClick('Logo')">
+
+    <div class="search-bar">
+      <input type="search" placeholder="Search products..." [(ngModel)]="keywords" (keydown.enter)="searchFunc(keywords)">
+      <button (click)="searchFunc(keywords)">
+        <img src="/search.png" alt="Search">
+      </button>
+    </div>
+  </section>
+
+  <img src="/burger-menu.svg" class="hamburger-menu-logo" alt="Menu" (click)="toggleMenu()">
+
+  <section class="sec2" [class.show]="isMenuOpen">
+
+    <!-- Guest view -->
+    <ng-container *ngIf="!isLoggedIn">
+      <button class="btn" routerLink="/sign-in" (click)="debugClick('Sign In')">
+        <img src="/signIn.png" alt="Sign In">
+        <span>Sign In</span>
+      </button>
+
+      <button class="btn" routerLink="/register" (click)="debugClick('Register')">
+        <img src="guest.svg" alt="Register">
+        <span>Register</span>
+      </button>
+    </ng-container>
+
+    <!-- Logged-in view -->
+    <ng-container *ngIf="isLoggedIn">
+      <button class="cart-btn" routerLink="/cart" (click)="debugClick('Cart')">
+        <img src="CartImg.svg" alt="Cart">
+        <span>Cart</span>
+      </button>
+
+      <button class="btn logout-btn" (click)="logout()">
+       
+        <span>Logout</span>
+      </button>
+    </ng-container>
+
+  </section>
+</header>

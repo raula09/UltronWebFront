@@ -1,0 +1,107 @@
+/* Signin Container */
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #f2f4f8;
+  padding: 100px;
+}
+
+/* Extra Wide Signin Box */
+.signin-box {
+  background: #fff;
+  padding: 60px 50px;
+  border-radius: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  width: 400px;
+  max-width: 900px; /* Twice as wide */
+  text-align: center;
+}
+
+/* Title */
+.signin-title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 40px;
+}
+
+/* Form Inputs */
+.signin-form .input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.signin-form label {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.signin-form input {
+  padding: 16px;
+  font-size: 17px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.signin-form input:focus {
+  border-color: #4caf50;
+}
+
+/* Signin Button */
+.signin-btn {
+  width: 100%;
+  padding: 18px;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 16px;
+  background-color: #4caf50;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.signin-btn:hover {
+  background-color: #43a047;
+  transform: translateY(-2px);
+}
+
+/* Signup Link */
+.signup-link {
+  margin-top: 20px;
+  font-size: 16px;
+  color: #555;
+}
+
+.signup-link a {
+  color: #4caf50;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 1000px) {
+  .signin-box {
+    max-width: 700px;
+    padding: 50px 35px;
+  }
+}
+
+@media (max-width: 600px) {
+  .signin-box {
+    max-width: 100%;
+    padding: 40px 25px;
+  }
+}
+h1 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5667px; }

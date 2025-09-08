@@ -1,0 +1,8 @@
+<div class="email-verification-container">
+  <h2>Email Verification</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="code" name="code" placeholder="Enter verification code" />
+    <button type="submit">Verify Email</button>
+  </form>
+</div>

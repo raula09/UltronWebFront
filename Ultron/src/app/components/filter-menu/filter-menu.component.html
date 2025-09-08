@@ -1,0 +1,25 @@
+<section class="filters-container">
+  <header class="filter-btn-container">
+    <div class="category-open-btn">
+      <button [ngClass]="categoryMenu ? 'active' : ''" (click)="handleCategoryMenu()">Categories</button>
+      <img src="arrowdown-removebg-preview.png" class="arrow">
+    </div>
+    <div class="brand-open-btn" (click)="handleBrandMenu()">
+      <button [ngClass]="brandMenu ? 'active' : ''">Brands</button>
+      <img src="arrowdown-removebg-preview.png" class="arrow">
+    </div>
+  </header>
+
+  <section *ngIf="categoryMenu" class="category-menu" @slideInTopToBottom>
+    <div class="category" *ngFor="let cat of categories" (click)="handleCategorySelect(cat.id)">
+      <img [src]="cat.icon" alt="{{ cat.name }}">
+      <p>{{ cat.name }}</p>
+    </div>
+  </section>
+
+  <section *ngIf="brandMenu" class="brand-menu" @slideInTopToBottom>
+    <div class="brand" *ngFor="let brand of brandsArray" (click)="handleBrandSelect(brand.name)">
+      <img [src]="brand.logo" class="brand-logo">
+    </div>
+  </section>
+</section>
