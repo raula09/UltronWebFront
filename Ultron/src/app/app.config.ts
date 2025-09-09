@@ -4,14 +4,12 @@ import { provideHttpClient, withInterceptorsFromDi, HTTP_INTERCEPTORS } from '@a
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
-import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
-import { AuthInterceptor } from './interceptors/auth.interceptor'; // <-- IMPORT a a a a
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideClientHydration(withEventReplay()),
     provideHttpClient(withInterceptorsFromDi()), 
     provideAnimations(),
     provideToastr({
@@ -22,6 +20,5 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
     }),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-
   ],
 };
