@@ -1,39 +1,32 @@
 <div *ngIf="products && products.length > 0" class="product-page-container">
   <div class="product-list">
     <div *ngFor="let product of products" class="product-card" (click)="viewProduct(product.id)">
-      
-      <!-- Image -->
+
       <div class="image-wrapper">
         <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-thumbnail">
       </div>
 
-      <!-- Info -->
       <div class="product-info">
         <h3 class="product-name">{{ product.name }}</h3>
 
-        <!-- Discount (optional) -->
         <div class="price-section">
           <span class="current-price">{{ product.price | currency }}</span>
-          
-      
         </div>
 
-        <!-- Shop / Extra info -->
+       
         <div class="product-meta">
-          <!-- <span class="shop-name">{{ product.shopName || 'Shop' }}</span> -->
-          <span class="rating">⭐ {{ product.rating || '4.5' }}</span>
-          <!-- <span class="sold">| Sold {{ product.sold || '100+' }}</span> -->
+          <span class="rating"><img src="star.png" alt="" class="star-icon"> {{ product.rating || '4.5' }}</span>
+       
         </div>
       </div>
 
-      <!-- Add to Cart -->
-      <button class="add-to-cart-btn" (click)="addToCartFunc(product.id, 1); $event.stopPropagation()">
-        <img src="Cart.png" class="cart-icon" alt="">Add to Cart
-      </button>
+      <div class="card-actions">
+        <button class="add-to-cart-btn" (click)="addToCartFunc(product.id, 1); $event.stopPropagation()">
+          <img src="Cart.png" class="cart-icon" alt=""> Add to Cart
+        </button>
+      </div>
     </div>
   </div>
-
-  <!-- Empty state -->
   <div *ngIf="!loading && (!products || products.length === 0)" class="no-products">
     <p>No products found.</p>
   </div>

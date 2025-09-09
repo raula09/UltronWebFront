@@ -20,12 +20,12 @@ export class CartService {
     );
   }
 
-  /** Get the current cart */
+
   get() {
     return this.http.get<CartDto>(`${this.base}/api/Cart`);
   }
 
-  /** Checkout the cart */
+
   checkout() {
     return this.http.post<{ message: string; purchasedItems: any[] }>(
       `${this.base}/api/Cart/checkout`,
@@ -33,7 +33,6 @@ export class CartService {
     );
   }
 
-  /** Clear the cart */
   clear() {
     return this.http.delete<{ message: string }>(`${this.base}/api/Cart`);
   }

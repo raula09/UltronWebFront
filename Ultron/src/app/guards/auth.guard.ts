@@ -7,10 +7,9 @@ export const protectedRouteGuard: CanActivateFn = () => {
   const router = inject(Router);
 
   if (tokenService.getTokenFromLocalStorage()) {
-    return true; // <-- User is logged in, ALLOW access
+    return true; 
   }
 
-  // User is not logged in, redirect to login page
   router.navigate(['/login']);
   return false;
 };

@@ -1,23 +1,26 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnChanges, SimpleChanges, Input, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { TokenService } from '../../services/token.service';
-import { CartService } from '../../services/cart.service';
 import { ProductService } from '../../services/product.service';
+import { CartService } from '../../services/cart.service';
+import { TokenService } from '../../services/token.service';
 import { Product } from '../../models/product.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-products-list',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './products-list.component.html',
-  styleUrls: ['./products-list.component.css'],
+  styleUrls: ['./products-list.component.css']
 })
-export class ProductsListComponent implements OnInit {
-  @Input() products: Product[] = []; 
+export class ProductsListComponent implements OnInit, OnChanges, OnDestroy {
+  @Input() products: Product[] | null = null;
+  @Input() selfLoad = false;
 
   loading = true;
+  private sub!: Subscription;
 
   constructor(
     private productService: ProductService,
@@ -28,24 +31,30 @@ export class ProductsListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if (!this.products || this.products.length === 0) {
+   
+    this.sub = this.productService.products$.subscribe(products => {
+      this.products = products;
+      this.loading = false;
+    });
+
+    if (this.selfLoad) {
       this.loadProducts();
-    } else {
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['products'] && !this.selfLoad) {
       this.loading = false;
     }
   }
 
-  loadProducts(): void {
-    this.productService.getProducts().subscribe({
-      next: (res) => {
-        this.products = res.products || res; 
-        this.loading = false;
-      },
-      error: (err) => {
-        this.toastr.error(err?.error || 'Failed to load');
-        this.loading = false;
-      }
-    });
+  ngOnDestroy(): void {
+    if (this.sub) this.sub.unsubscribe();
+  }
+
+  private loadProducts(): void {
+    this.loading = true;
+    this.productService.getProducts();
   }
 
   viewProduct(productId: string) {
@@ -54,19 +63,14 @@ export class ProductsListComponent implements OnInit {
 
   addToCartFunc(productId: string, quantity: number) {
     const token = this.tokenService.getTokenFromLocalStorage();
-
     if (!token) {
       this.toastr.error('Please sign in first');
       return;
     }
 
     this.cartService.add(productId, quantity).subscribe({
-      next: (res) => {
-        this.toastr.success('Added to cart');
-      },
-      error: (e) => {
-        this.toastr.error(e?.error || 'Failed to add');
-      }
+      next: () => this.toastr.success('Added to cart'),
+      error: e => this.toastr.error(e?.error || 'Failed to add')
     });
   }
 }

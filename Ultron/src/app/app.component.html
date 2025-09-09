@@ -1,5 +1,9 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
-  
+<app-spinner [show]="loading"></app-spinner>
 
+<app-header style="margin-bottom: 40px;"></app-header>
 
+<main [@routeAnimations]="getRouteAnimationData(outlet)">
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
+
+<app-footer style="width: 100%;"></app-footer>

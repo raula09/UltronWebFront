@@ -1,3 +1,6 @@
+body, .main-content {
+  padding-top: 100px; 
+}
 
 .header {
   width: 100%;
@@ -5,14 +8,19 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 3rem;
-  background: linear-gradient(135deg, #4E30D5, #7B6CF4);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #bebebe, #b0b0b0); 
   color: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   box-sizing: border-box;
   position: relative;
+  z-index: 1000;
+  font-family: 'Inter', sans-serif;
+    position: fixed; 
+  top: 0;           
+  
 }
 
-.sec1, .sec2 {
+.sec1 {
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -21,15 +29,20 @@
 .logo {
   width: 75px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .search-bar {
   display: flex;
   align-items: center;
-  background: white;
+  background: #cccccc;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(131, 131, 131, 0.4);
 }
 
 .search-bar input {
@@ -38,36 +51,55 @@
   outline: none;
   width: 300px;
   max-width: 100%;
+  background: #cccccc;
+  color: white;
+}
+
+.search-bar input::placeholder {
+  color: #888888;
 }
 
 .search-bar button {
-  background: #ff8d55;
+  background: #cccccc;
   border: none;
   padding: 0.5rem;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.search-bar button:hover {
+  background: #666666;
 }
 
 .search-bar img {
   width: 20px;
 }
 
+/* --- Right Section: Buttons --- */
+.sec2 {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: all 0.3s ease;
+}
+
 .btn, .cart-btn {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  background: white;
-  color: #4E30D5;
+  background: #9c9c9c;
+  color: #ffffff;
   padding: 0.5rem 1rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: all 0.3s ease;
   font-weight: 600;
+  transition: all 0.3s ease;
 }
 
 .btn:hover, .cart-btn:hover {
   transform: translateY(-2px);
-  background: #ff8d55;
+  background: #555555;
   color: white;
 }
 
@@ -75,18 +107,29 @@
   width: 20px;
 }
 
+.logout-btn {
+  background: #9c9c9c;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #666666;
+}
+
 .hamburger-menu-logo {
   display: none;
   width: 30px;
+  height: 30px;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .hamburger-menu-logo div {
   background-color: white;
   height: 4px;
   width: 25px;
-  margin: 5px 0;
   border-radius: 4px;
   transition: transform 0.3s ease, opacity 0.3s ease;
 }
@@ -105,51 +148,71 @@
 
 @media (max-width: 992px) {
   .search-bar input {
-      width: 200px;
+    width: 200px;
   }
 }
 
 @media (max-width: 768px) {
   .hamburger-menu-logo {
-      display: block;
+    display: flex;
   }
 
   .sec2 {
-      position: absolute;
-      top: 100%;
-      right: 0;
-      background: #4E30D5;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-      width: 200px;
-      display: none;
-      border-radius: 0 0 8px 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      z-index: 100;
-      transform: translateY(-20px);
-      opacity: 0;
-      transition: transform 0.3s ease, opacity 0.3s ease;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #0d0d0d;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    width: 200px;
+    display: none;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    z-index: 100;
+    transform: translateY(-20px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
 
   .sec2.show {
-      display: flex;
-      transform: translateY(0);
-      opacity: 1;
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
   }
 
   .sec1 {
-      gap: 0.5rem;
+    gap: 0.5rem;
   }
 
   .search-bar input {
-      width: 150px;
+    width: 150px;
   }
 }
 
 @media (max-width: 480px) {
   .search-bar input {
-      width: 120px;
+    width: 120px;
   }
 }
-h1 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; } h3 { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; } p { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } blockquote { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 21px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 30px; } pre { font-family: Arial, Helvetica Neue, Helvetica, sans-serif; font-size: 13px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 18.5667px; }
+
+.profile-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  margin-left: 15px;
+  padding: 5px;
+  border-radius: 50%;
+  transition: transform 0.2s ease-in-out;
+}
+
+.profile-btn:hover {
+  transform: scale(1.1);
+}
+
+.profile-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}

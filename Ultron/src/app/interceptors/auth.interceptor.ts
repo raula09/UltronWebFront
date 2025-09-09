@@ -21,14 +21,14 @@ intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> 
   if (token) {
     authReq = req.clone({
       setHeaders: { Authorization: `Bearer ${token}` },
-      withCredentials: true // important for refresh cookies
+      withCredentials: true 
     });
   }
 
   return next.handle(authReq).pipe(
     catchError(err => {
       if (err instanceof HttpErrorResponse && err.status === 401 && token) {
-        // token expired, refresh flow
+     
         return this.handle401Error(authReq, next);
       }
       return throwError(() => err);

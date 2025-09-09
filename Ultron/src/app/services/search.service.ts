@@ -24,7 +24,7 @@ export class SearchService {
     this.http.get<any>(this.baseUrl, { params }).subscribe(
       (data) => {
         console.log(data);
-        this.productService.products = data.products;
+        this.productService.products$ = data.products;
         return data.products;
       },
       (error) => {

@@ -5,6 +5,7 @@ import { ProductService } from '../../services/product.service';
 import { Product } from '../../models/product.model';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from '../../services/token.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-page',
@@ -21,7 +22,8 @@ export class CartPageComponent implements OnInit {
     private cartService: CartService,
     private products: ProductService,
     private toastr: ToastrService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class CartPageComponent implements OnInit {
           this.total = 0;
           return;
         }
-        // Load full product info
+
         Promise.all(cart.items.map(async ci => {
           const p = await this.products.getProductById(ci.productId).toPromise();
           return { ...(p as Product), quantity: ci.quantity };
@@ -59,7 +61,6 @@ export class CartPageComponent implements OnInit {
       item.quantity--;
       this.updateQuantity(item);
     } else {
-      // Optionally remove if quantity hits 0
       item.quantity = 0;
       this.updateQuantity(item);
     }
@@ -83,7 +84,7 @@ export class CartPageComponent implements OnInit {
     this.cartService.clear().subscribe({
       next: () => {
         this.userProducts = [];
-        this.calculateTotal();
+        this.total = 0;
       },
       error: () => this.toastr.error('Failed to clear cart')
     });
@@ -91,9 +92,12 @@ export class CartPageComponent implements OnInit {
 
   checkout() {
     this.cartService.checkout().subscribe({
-      next: () => {
+      next: (res: any) => {
         this.toastr.success('Checkout successful');
-        this.loadCart();
+        const purchasedIds = res.purchasedItems.map((i: any) => i.productId).join(',');
+        this.router.navigate(['/review'], { queryParams: { products: purchasedIds } });
+        this.userProducts = [];
+        this.total = 0;
       },
       error: () => this.toastr.error('Checkout failed')
     });

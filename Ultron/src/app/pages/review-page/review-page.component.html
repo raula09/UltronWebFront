@@ -1,0 +1,23 @@
+<div class="review-page">
+  <h1 class="page-title">⭐ Leave a Review</h1>
+
+  <div *ngFor="let r of reviews" class="review-card">
+    <h3 class="product-title">Product #{{ r.productId }}</h3>
+
+    <!-- Star Rating -->
+    <div class="rating">
+      <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <span
+          class="star"
+          [class.filled]="star <= r.rating"
+          (click)="r.rating = star">
+          ★
+        </span>
+      </ng-container>
+    </div>
+
+  
+  </div>
+
+  <button class="submit-btn" (click)="submitReviews()">Submit Reviews</button>
+</div>

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FilterService } from './filter.service';
+import { GlobalSpinnerService } from './spinner.service';
 
-describe('FilterService', () => {
-  let service: FilterService;
+describe('GlobalSpinnerService', () => {
+  let service: GlobalSpinnerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(FilterService);
+    service = TestBed.inject(GlobalSpinnerService);
   });
 
   it('should be created', () => {

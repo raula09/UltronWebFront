@@ -4,22 +4,28 @@ import { EmailVerificationComponent } from './components/verify-email/verify-ema
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { cartGuard } from './guards/cart.guard';
-import {  protectedRouteGuard } from './guards/auth.guard';
+import { protectedRouteGuard } from './guards/auth.guard';
 import { CartPageComponent } from './pages/cart-page/cart-page.component';
 import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { ProductsListComponent } from './components/products-list/products-list.component';
-export const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'cart', component: CartPageComponent, canActivate: [cartGuard] },
-{ path: 'products', component: ProductsListComponent },
-  // Public pages
-  { path: 'sign-in', component: SignInComponent },
-  { path: 'register', component: RegisterComponent },
-  
-  { path: 'verify-email', component: EmailVerificationComponent },
-  { path: 'product-detail/:id', component: ProductDetailComponent },
-  // Protected pages
+import { ReviewPageComponent } from './pages/review-page/review-page.component';
 
+export const routes: Routes = [
+  { path: '', component: LandingPageComponent, data: { animation: 'HomePage' } },
+  { path: 'products', component: ProductsListComponent, data: { animation: 'ProductsPage' } },
+  { path: 'product-detail/:id', component: ProductDetailComponent, data: { animation: 'ProductDetailPage' } },
+  { path: 'cart', component: CartPageComponent, canActivate: [cartGuard], data: { animation: 'CartPage' } },
+  { path: 'review', component: ReviewPageComponent, canActivate: [protectedRouteGuard], data: { animation: 'ReviewPage' } },
+  { path: 'sign-in', component: SignInComponent, data: { animation: 'SignInPage' } },
+  { path: 'register', component: RegisterComponent, data: { animation: 'RegisterPage' } },
+  { path: 'verify-email', component: EmailVerificationComponent, data: { animation: 'VerifyEmailPage' } },
+
+  { 
+    path: 'profile', 
+    loadComponent: () => import('./pages/user-profile/user-profile.component').then(m => m.UserProfileComponent),
+    canActivate: [protectedRouteGuard],
+    data: { animation: 'ProfilePage' }
+  },
 
   { path: '**', redirectTo: '' },
 ];

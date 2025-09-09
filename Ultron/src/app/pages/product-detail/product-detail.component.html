@@ -1,80 +1,60 @@
 <div *ngIf="product" class="product-container">
-
   <section class="image-gallery">
     <div class="main-image-wrapper">
       <img [src]="selectedImage" [alt]="product.name" class="main-image">
     </div>
     <div class="thumbnail-gallery">
-      
-      <!-- <div *ngFor="let imgUrl of product.imageUrls"
+      <img *ngIf="product.imageUrl"
+           [src]="product.imageUrl"
            class="thumbnail"
-           [class.active]="imgUrl === selectedImage"
+           [class.active]="selectedImage === product.imageUrl"
+           (click)="selectImage(product.imageUrl)">
+      <img *ngFor="let imgUrl of product.galleryImages"
+           [src]="imgUrl"
+           class="thumbnail"
+           [class.active]="selectedImage === imgUrl"
            (click)="selectImage(imgUrl)">
-       
-      </div> --> <img [src]="product.imageUrl" alt="{{ product.name }}" >
     </div>
   </section>
 
   <section class="product-details">
-    <div>
-      <h1 class="product-title">{{ product.name }}</h1>
-      <p class="product-price">{{ product.price | currency }}</p>
+    <h1>{{ product.name }}</h1>
+    <p class="product-price">{{ product.price | currency }}</p>
 
-      <div class="review-summary">
-        <div class="stars">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star-half-stroke"></i>
-        </div>
-        <span>(4.8) 1.2k Reviews</span> </div>
+<section class="product-reviews" *ngIf="product.reviews?.length">
+  <h2>Customer Reviews</h2>
 
-      <div class="product-description">
-        <p>{{ product.description }}</p>
-      </div>
+  <div class="average-rating">
+    <div class="stars">
+      <img src="star.png" alt="" class="star-icon">
+      <i class="fa-solid" *ngFor="let star of [1,2,3,4,5]"
+         [class.fa-star]="star <= (product.rating || 0)"
+         [class.fa-star-half-stroke]="star - 0.5 === (product.rating || 0)">
+      </i>
+    </div>
+    <span class="avg-score">{{ product.rating?.toFixed(1) || 'N/A' }} / 5</span>
+  
+  </div>
 
-      <div class="color-options">
-        <h3>COLOR</h3>
-        <div class="color-swatches">
+  
+</section>
 
-          <!-- <span *ngFor="let color of product.colors"
-                class="swatch"
-                [ngStyle]="{'background-color': color.hex}"
-                [class.selected]="color.name === product.selectedColor"
-                (click)="selectColor(color.name)">
-          </span> -->
-        </div>
-      </div>
+    <!-- Product Description -->
+    <p class="product-description">{{ product.description }}</p>
 
-      <div class="accordion">
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <span>Specification</span>
-            <i class="fa-solid fa-chevron-down"></i>
-          </div>
-          <div class="accordion-content">
-            <ul>
-              <!-- <li *ngFor="let spec of product.specifications">{{ spec }}</li> -->
-            </ul>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <div class="accordion-header">
-            <span>Feature</span>
-            <i class="fa-solid fa-chevron-down"></i>
-          </div>
-        </div>
-      </div>
+    <!-- Additional Details -->
+    <div class="product-additional-details">
+      <p><strong>Size:</strong> {{ product.size }}</p>
+      <p><strong>Color:</strong> {{ product.color }}</p>
+      <p><strong>Category:</strong> {{ product.category }}</p>
+      <p><strong>Material:</strong> {{ product.material }}</p>
+      <p><strong>Available Quantity:</strong> {{ product.quantity }}</p>
     </div>
 
+    <!-- Action Buttons -->
     <div class="action-buttons">
-     
-     
-      <button class="btn icon-btn" (click)="addToCartFunc(product.id, 1)" aria-label="Add to cart">
-         <button class="btn buy-now"><img src="Cart.png" alt=""></button>
-      </button>
+      <button class="add-to-cart" (click)="addToCartFunc(product.id, 1)">Add to Cart</button>
+      <button class="buy-now" (click)="buyNow()">Buy Now</button>
     </div>
   </section>
-
 </div>

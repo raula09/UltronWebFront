@@ -44,12 +44,12 @@ export class AuthService {
   }
 
   refresh() {
-  return this.http.post<{ token: string }>(
-    `${this.base}/account/refresh`,
-    {},
-    { withCredentials: true }
-  );
-}
+    return this.http.post<{ token: string }>(
+      `${this.base}/account/refresh`,
+      {},
+      { withCredentials: true }
+    );
+  }
 
   logout() {
     return this.http.post<{ message: string }>(
@@ -76,5 +76,10 @@ export class AuthService {
       `${this.base}/account/password-reset`,
       body
     );
+  }
+
+
+   getProfile() {
+    return this.http.get<{ user: any; orders: any[] }>(`${API_BASE_URL}/account/profile`, { withCredentials: true });
   }
 }

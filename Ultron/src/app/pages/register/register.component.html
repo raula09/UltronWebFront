@@ -1,8 +1,25 @@
-<div class="register-container">
-  <h2>Register</h2>
-  <input type="text" placeholder="First Name" [(ngModel)]="username">
-  <input type="email" placeholder="Email" [(ngModel)]="email">
-  <input type="password" placeholder="Password" [(ngModel)]="password">
-  <input type="text" placeholder="Phone" [(ngModel)]="phoneNumber">
-  <button (click)="registerFunc()">Submit</button>
-</div>
+<section class="auth-container">
+  <div class="auth-box">
+    <h1 class="auth-title">Register</h1>
+    <form class="auth-form">
+      <div class="input-group">
+        <input type="text" placeholder="First Name" [(ngModel)]="username" required />
+      </div>
+      <div class="input-group">
+        <input type="email" placeholder="Email" [(ngModel)]="email" required />
+      </div>
+      <div class="input-group">
+        <input type="password" placeholder="Password" [(ngModel)]="password" required />
+      </div>
+      <div class="input-group">
+        <input type="text" placeholder="Phone Number" [(ngModel)]="phoneNumber" />
+      </div>
+
+      <button type="button" (click)="registerFunc()" class="auth-btn register-btn">Register</button>
+    </form>
+
+    <p class="switch-link">
+      Already have an account? <a routerLink="/sign-in">Sign In</a>
+    </p>
+  </div>
+</section>

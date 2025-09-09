@@ -14,7 +14,6 @@
 
   <section class="sec2" [class.show]="isMenuOpen">
 
-    <!-- Guest view -->
     <ng-container *ngIf="!isLoggedIn">
       <button class="btn" routerLink="/sign-in" (click)="debugClick('Sign In')">
         <img src="/signIn.png" alt="Sign In">
@@ -27,16 +26,14 @@
       </button>
     </ng-container>
 
-    <!-- Logged-in view -->
     <ng-container *ngIf="isLoggedIn">
       <button class="cart-btn" routerLink="/cart" (click)="debugClick('Cart')">
         <img src="CartImg.svg" alt="Cart">
         <span>Cart</span>
       </button>
 
-      <button class="btn logout-btn" (click)="logout()">
-       
-        <span>Logout</span>
+      <button class="profile-btn" routerLink="/profile" (click)="debugClick('Profile')">
+        <img src="profile-user.png" alt="Profile" class="profile-icon">
       </button>
     </ng-container>
 
